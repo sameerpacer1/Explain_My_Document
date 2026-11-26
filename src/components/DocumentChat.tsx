@@ -66,13 +66,21 @@ export function DocumentChat({
         }),
       });
 
-      const data = (await response.json()) as ChatApiResponse | ApiErrorResponse;
+      const rawText = await response.text();
+      let data: ChatApiResponse | ApiErrorResponse | null = null;
+      try {
+        data = JSON.parse(rawText) as ChatApiResponse | ApiErrorResponse;
+      } catch {
+        data = null;
+      }
 
-      if (!response.ok || !("answer" in data)) {
-        const errMsg =
-          "error" in data
-            ? data.error
-            : "Could not answer right now. Please try again.";
+      if (!response.ok || !data || !("answer" in data)) {
+        let errMsg = "Could not answer right now. Please try again.";
+        if (data && "error" in data && data.error) {
+          errMsg = data.error;
+        } else if (response.status === 504) {
+          errMsg = "The answer took too long. Please try asking again.";
+        }
         setError(errMsg);
         return;
       }

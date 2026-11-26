@@ -9,6 +9,7 @@ import { LoadingState } from "@/components/LoadingState";
 import { ResultsDashboard } from "@/components/ResultsDashboard";
 import { UploadPanel } from "@/components/UploadPanel";
 import type { SampleDocumentInfo } from "@/lib/constants";
+import { compressImageForUpload } from "@/lib/imageCompression";
 import type {
   AnalyzeApiResponse,
   ApiErrorResponse,
@@ -50,8 +51,9 @@ export default function HomePage() {
     setIsAnalyzing(true);
 
     try {
+      const preparedFile = await compressImageForUpload(fileToAnalyze);
       const formData = new FormData();
-      formData.append("file", fileToAnalyze);
+      formData.append("file", preparedFile);
       formData.append("language", targetLanguage);
 
       const response = await fetch("/api/analyze", {
@@ -59,13 +61,25 @@ export default function HomePage() {
         body: formData,
       });
 
-      const data = (await response.json()) as AnalyzeApiResponse | ApiErrorResponse;
+      const rawText = await response.text();
+      let data: AnalyzeApiResponse | ApiErrorResponse | null = null;
+      try {
+        data = JSON.parse(rawText) as AnalyzeApiResponse | ApiErrorResponse;
+      } catch {
+        data = null;
+      }
 
-      if (!response.ok || !("analysis" in data)) {
-        const msg =
-          "error" in data
-            ? data.error
-            : "We could not analyze this document right now. Please try again.";
+      if (!response.ok || !data || !("analysis" in data)) {
+        let msg = "We could not analyze this document right now. Please try again.";
+        if (data && "error" in data && data.error) {
+          msg = data.error;
+        } else if (response.status === 413) {
+          msg = "This file is too large for the server. Please upload a smaller image or PDF (under 4.5 MB).";
+        } else if (response.status === 504) {
+          msg = "Analyzing this document took too long. Please try a clearer or smaller photo and try again.";
+        } else if (!response.ok) {
+          msg = `Server error (${response.status}). Please try again in a moment.`;
+        }
         setErrorMessage(msg);
         return;
       }
