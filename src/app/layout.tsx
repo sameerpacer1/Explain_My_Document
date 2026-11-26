@@ -16,8 +16,17 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className="min-h-screen flex flex-col bg-gradient-to-br from-sky-100/90 via-slate-100 to-teal-100/80 font-sans text-slate-900 transition-colors duration-200 dark:from-slate-950 dark:via-slate-900 dark:to-sky-950 dark:text-slate-100 print:bg-white print:text-slate-900"
+        className="relative min-h-screen flex flex-col bg-slate-950 font-sans text-slate-900 transition-colors duration-200 dark:text-slate-100 print:bg-white print:text-slate-900"
       >
+        {/* Fixed full-bleed background image (hidden when printing to PDF) */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat print:hidden"
+          style={{ backgroundImage: "url('/images/bg-pattern.jpg')" }}
+        >
+          <div className="absolute inset-0 bg-slate-950/15 transition-colors duration-200 dark:bg-slate-950/45" />
+        </div>
+
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-sky-700 focus:px-4 focus:py-2 focus:text-white focus:font-medium"
