@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className="min-h-screen flex flex-col bg-gradient-to-br from-sky-100 via-cyan-50 to-teal-100 font-sans text-slate-900 print:bg-white"
+        className="min-h-screen flex flex-col bg-gradient-to-br from-sky-100/90 via-slate-100 to-teal-100/80 font-sans text-slate-900 transition-colors duration-200 dark:from-slate-950 dark:via-slate-900 dark:to-sky-950 dark:text-slate-100 print:bg-white print:text-slate-900"
       >
         <a
           href="#main-content"

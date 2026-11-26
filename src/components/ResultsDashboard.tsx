@@ -53,26 +53,26 @@ const ATTENTION_STYLES: Record<
   }
 > = {
   low: {
-    badge: "bg-emerald-100 text-emerald-900 border-emerald-300",
+    badge: "bg-emerald-100 text-emerald-900 border-emerald-300 dark:bg-emerald-950 dark:text-emerald-200 dark:border-emerald-700",
     label: "Low Attention",
-    border: "border-emerald-200 bg-gradient-to-br from-emerald-50/80 to-white",
-    iconColor: "text-emerald-700",
+    border: "border-emerald-200 bg-gradient-to-br from-emerald-50/80 to-white dark:border-emerald-800 dark:from-emerald-950/50 dark:to-slate-900",
+    iconColor: "text-emerald-700 dark:text-emerald-400",
     meterWidth: "w-1/3",
     meterColor: "bg-emerald-500",
   },
   medium: {
-    badge: "bg-amber-100 text-amber-900 border-amber-300",
+    badge: "bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950 dark:text-amber-200 dark:border-amber-700",
     label: "Medium Attention",
-    border: "border-amber-200 bg-gradient-to-br from-amber-50/80 to-white",
-    iconColor: "text-amber-700",
+    border: "border-amber-200 bg-gradient-to-br from-amber-50/80 to-white dark:border-amber-800 dark:from-amber-950/50 dark:to-slate-900",
+    iconColor: "text-amber-700 dark:text-amber-400",
     meterWidth: "w-2/3",
     meterColor: "bg-amber-500",
   },
   high: {
-    badge: "bg-rose-100 text-rose-900 border-rose-300",
+    badge: "bg-rose-100 text-rose-900 border-rose-300 dark:bg-rose-950 dark:text-rose-200 dark:border-rose-700",
     label: "High Attention",
-    border: "border-rose-200 bg-gradient-to-br from-rose-50/80 to-white",
-    iconColor: "text-rose-700",
+    border: "border-rose-200 bg-gradient-to-br from-rose-50/80 to-white dark:border-rose-800 dark:from-rose-950/50 dark:to-slate-900",
+    iconColor: "text-rose-700 dark:text-rose-400",
     meterWidth: "w-full",
     meterColor: "bg-rose-600",
   },
@@ -83,18 +83,18 @@ const RISK_STYLES: Record<
   { card: string; badge: string; label: string }
 > = {
   high: {
-    card: "border-rose-200 bg-rose-50/60",
-    badge: "bg-rose-100 text-rose-900 border-rose-300",
+    card: "border-rose-200 bg-rose-50/60 dark:border-rose-800/80 dark:bg-rose-950/35",
+    badge: "bg-rose-100 text-rose-900 border-rose-300 dark:bg-rose-950 dark:text-rose-200 dark:border-rose-700",
     label: "High Risk",
   },
   medium: {
-    card: "border-amber-200 bg-amber-50/60",
-    badge: "bg-amber-100 text-amber-900 border-amber-300",
+    card: "border-amber-200 bg-amber-50/60 dark:border-amber-800/80 dark:bg-amber-950/35",
+    badge: "bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950 dark:text-amber-200 dark:border-amber-700",
     label: "Medium Risk",
   },
   low: {
-    card: "border-sky-200 bg-sky-50/60",
-    badge: "bg-sky-100 text-sky-900 border-sky-300",
+    card: "border-sky-200 bg-sky-50/60 dark:border-sky-800/80 dark:bg-sky-950/35",
+    badge: "bg-sky-100 text-sky-900 border-sky-300 dark:bg-sky-950 dark:text-sky-200 dark:border-sky-700",
     label: "Low Risk",
   },
 };
@@ -105,15 +105,15 @@ const PRIORITY_META: Record<
 > = {
   urgent: {
     heading: "Urgent (Do First)",
-    pill: "bg-rose-100 text-rose-900 border-rose-200",
+    pill: "bg-rose-100 text-rose-900 border-rose-200 dark:bg-rose-950 dark:text-rose-200 dark:border-rose-800",
   },
   soon: {
     heading: "Soon",
-    pill: "bg-amber-100 text-amber-900 border-amber-200",
+    pill: "bg-amber-100 text-amber-900 border-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:border-amber-800",
   },
   later: {
     heading: "Later / Keep in Mind",
-    pill: "bg-slate-100 text-slate-800 border-slate-200",
+    pill: "bg-slate-100 text-slate-800 border-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700",
   },
 };
 
@@ -271,28 +271,28 @@ export function ResultsDashboard({
     return (
       <section
         aria-live="polite"
-        className="mx-auto max-w-2xl animate-fade-in-up rounded-3xl border border-amber-300 bg-amber-50 p-6 shadow-sm sm:p-8"
+        className="mx-auto max-w-2xl animate-fade-in-up rounded-3xl border border-amber-300 bg-amber-50 p-6 shadow-sm dark:border-amber-800 dark:bg-amber-950/40 sm:p-8"
       >
         <div className="flex items-start gap-3.5">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300">
             <Camera className="h-6 w-6" aria-hidden="true" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-slate-900">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
               We could not read this document clearly
             </h2>
-            <p className="mt-2 text-base leading-relaxed text-slate-800">
+            <p className="mt-2 text-base leading-relaxed text-slate-800 dark:text-slate-200">
               {analysis.unreadable_reason ||
                 "The image looks blurry, cut off, or is not a readable document."}
             </p>
           </div>
         </div>
 
-        <div className="mt-5 rounded-2xl border border-amber-200 bg-white p-4">
-          <h3 className="text-sm font-bold text-slate-900">
+        <div className="mt-5 rounded-2xl border border-amber-200 bg-white p-4 dark:border-amber-800/60 dark:bg-slate-900">
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white">
             Tips for a clearer photo:
           </h3>
-          <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm text-slate-700">
+          <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm text-slate-700 dark:text-slate-300">
             <li>Place the document flat on a well-lit table without shadows.</li>
             <li>Hold your phone directly above the page and wait for it to focus.</li>
             <li>Make sure all four corners and small text are inside the frame.</li>
@@ -350,11 +350,11 @@ export function ResultsDashboard({
   return (
     <div aria-live="polite" className="animate-fade-in-up space-y-5">
       {/* Print-only header */}
-      <div className="hidden print-only border-b border-slate-300 pb-3 mb-4">
+      <div className="mb-4 hidden border-b border-slate-300 pb-3 print-only">
         <h1 className="text-xl font-bold text-slate-900">
           Explain-My-Document — Summary Report ({language})
         </h1>
-        <p className="text-xs text-slate-600 mt-1">
+        <p className="mt-1 text-xs text-slate-600">
           Generated from user upload in memory. Not stored on any server.
         </p>
       </div>
@@ -364,21 +364,21 @@ export function ResultsDashboard({
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-block rounded-lg border border-slate-200 bg-white px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-700 shadow-sm">
+              <span className="inline-block rounded-lg border border-slate-200 bg-white px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
                 {analysis.document_type}
               </span>
               {previewUrl ? (
                 <button
                   type="button"
                   onClick={() => setShowDocModal(true)}
-                  className="inline-flex items-center gap-1 rounded-lg border border-sky-200 bg-white px-2.5 py-1 text-xs font-semibold text-sky-800 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-600 no-print"
+                  className="inline-flex items-center gap-1 rounded-lg border border-sky-200 bg-white px-2.5 py-1 text-xs font-semibold text-sky-800 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-600 dark:border-slate-700 dark:bg-slate-800 dark:text-sky-300 dark:hover:bg-slate-700 no-print"
                 >
                   <Eye className="h-3.5 w-3.5" aria-hidden="true" />
                   View Original
                 </button>
               ) : null}
             </div>
-            <h2 className="mt-3 text-xl font-bold leading-snug text-slate-900 sm:text-2xl">
+            <h2 className="mt-3 text-xl font-bold leading-snug text-slate-900 dark:text-white sm:text-2xl">
               {analysis.attention_reason}
             </h2>
           </div>
@@ -395,7 +395,7 @@ export function ResultsDashboard({
 
         {/* Visual Attention Gauge */}
         <div className="mt-4">
-          <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200/80">
+          <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200/80 dark:bg-slate-800">
             <div
               className={`h-full rounded-full transition-all duration-500 ${attention.meterWidth} ${attention.meterColor}`}
             />
@@ -403,24 +403,24 @@ export function ResultsDashboard({
         </div>
 
         {/* Action Toolbar */}
-        <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-slate-200/80 pt-4 no-print">
+        <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-slate-200/80 pt-4 dark:border-slate-800 no-print">
           <button
             type="button"
             onClick={handleToggleSpeech}
             className={`inline-flex items-center gap-1.5 rounded-xl border px-3.5 py-2 text-xs font-semibold shadow-sm transition focus:outline-none focus:ring-2 focus:ring-sky-600 sm:text-sm ${
               isSpeaking
-                ? "border-rose-300 bg-rose-50 text-rose-900"
-                : "border-slate-300 bg-white text-slate-800 hover:bg-slate-50"
+                ? "border-rose-300 bg-rose-50 text-rose-900 dark:border-rose-700 dark:bg-rose-950 dark:text-rose-200"
+                : "border-slate-300 bg-white text-slate-800 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
             }`}
           >
             {isSpeaking ? (
               <>
-                <Square className="h-4 w-4 text-rose-600" aria-hidden="true" />
+                <Square className="h-4 w-4 text-rose-600 dark:text-rose-400" aria-hidden="true" />
                 Stop
               </>
             ) : (
               <>
-                <Volume2 className="h-4 w-4 text-sky-700" aria-hidden="true" />
+                <Volume2 className="h-4 w-4 text-sky-700 dark:text-sky-400" aria-hidden="true" />
                 Listen
               </>
             )}
@@ -429,16 +429,16 @@ export function ResultsDashboard({
           <button
             type="button"
             onClick={handleCopySummary}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-800 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-600 sm:text-sm"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-800 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 sm:text-sm"
           >
             {copied ? (
               <>
-                <Check className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+                <Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
                 Copied!
               </>
             ) : (
               <>
-                <Copy className="h-4 w-4 text-sky-700" aria-hidden="true" />
+                <Copy className="h-4 w-4 text-sky-700 dark:text-sky-400" aria-hidden="true" />
                 Copy
               </>
             )}
@@ -447,15 +447,15 @@ export function ResultsDashboard({
           <button
             type="button"
             onClick={handleDownloadPdf}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-800 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-600 sm:text-sm"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-800 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 sm:text-sm"
           >
-            <Download className="h-4 w-4 text-sky-700" aria-hidden="true" />
+            <Download className="h-4 w-4 text-sky-700 dark:text-sky-400" aria-hidden="true" />
             Save PDF
           </button>
 
           {canReanalyze ? (
-            <div className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3 py-1.5 shadow-sm">
-              <Languages className="h-4 w-4 shrink-0 text-sky-700" aria-hidden="true" />
+            <div className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3 py-1.5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+              <Languages className="h-4 w-4 shrink-0 text-sky-700 dark:text-sky-400" aria-hidden="true" />
               <label htmlFor="switch-language" className="sr-only">
                 Switch output language
               </label>
@@ -466,10 +466,14 @@ export function ResultsDashboard({
                 onChange={(e) =>
                   onReanalyzeInLanguage(e.target.value as SupportedLanguage)
                 }
-                className="bg-transparent text-xs font-semibold text-slate-800 focus:outline-none disabled:opacity-50 sm:text-sm"
+                className="bg-transparent text-xs font-semibold text-slate-800 focus:outline-none disabled:opacity-50 dark:text-slate-100 sm:text-sm"
               >
                 {SUPPORTED_LANGUAGES.map((lang) => (
-                  <option key={lang.value} value={lang.value}>
+                  <option
+                    key={lang.value}
+                    value={lang.value}
+                    className="bg-white text-slate-900 dark:bg-slate-800 dark:text-slate-100"
+                  >
                     {lang.label}
                     {lang.nativeLabel !== lang.label ? ` (${lang.nativeLabel})` : ""}
                   </option>
@@ -480,9 +484,9 @@ export function ResultsDashboard({
 
           <a
             href="#chat-section"
-            className="inline-flex items-center gap-1.5 rounded-xl border border-sky-200 bg-sky-50 px-3.5 py-2 text-xs font-semibold text-sky-900 hover:bg-sky-100 lg:hidden"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-sky-200 bg-sky-50 px-3.5 py-2 text-xs font-semibold text-sky-900 hover:bg-sky-100 dark:border-sky-800 dark:bg-sky-950 dark:text-sky-200 lg:hidden"
           >
-            <MessageSquare className="h-4 w-4 text-sky-700" aria-hidden="true" />
+            <MessageSquare className="h-4 w-4 text-sky-700 dark:text-sky-400" aria-hidden="true" />
             Ask AI
           </a>
 
@@ -497,13 +501,13 @@ export function ResultsDashboard({
         </div>
 
         {speechNotice ? (
-          <p className="mt-2.5 text-xs font-medium text-slate-700 no-print">
+          <p className="mt-2.5 text-xs font-medium text-slate-700 dark:text-slate-300 no-print">
             {speechNotice}
           </p>
         ) : null}
       </section>
 
-      {/* Interactive Filter Tabs (Mobile + Desktop) */}
+      {/* Interactive Filter Tabs */}
       <div
         role="tablist"
         aria-label="Filter document explanation sections"
@@ -521,7 +525,7 @@ export function ResultsDashboard({
               className={`shrink-0 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-600 sm:text-sm ${
                 active
                   ? "border-sky-700 bg-sky-700 text-white shadow-sm"
-                  : "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50"
+                  : "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-sky-500 dark:hover:bg-slate-700"
               }`}
             >
               {tab.label}
@@ -535,47 +539,49 @@ export function ResultsDashboard({
         <>
           <section
             aria-labelledby="summary-heading"
-            className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm print-card sm:p-6"
+            className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 print-card sm:p-6"
           >
-            <h3 id="summary-heading" className="text-lg font-bold text-slate-900">
+            <h3 id="summary-heading" className="text-lg font-bold text-slate-900 dark:text-white">
               Plain-Language Summary
             </h3>
-            <p className="mt-2.5 whitespace-pre-line text-base leading-relaxed text-slate-800 sm:text-lg">
+            <p className="mt-2.5 whitespace-pre-line text-base leading-relaxed text-slate-800 dark:text-slate-200 sm:text-lg">
               {analysis.summary}
             </p>
           </section>
 
           <section
             aria-labelledby="facts-heading"
-            className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm print-card sm:p-6"
+            className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 print-card sm:p-6"
           >
-            <h3 id="facts-heading" className="text-lg font-bold text-slate-900">
+            <h3 id="facts-heading" className="text-lg font-bold text-slate-900 dark:text-white">
               Key Facts
             </h3>
             {analysis.key_facts.length === 0 ? (
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
                 No specific dates, amounts, or parties were clearly listed.
               </p>
             ) : (
-              <div className="mt-3 overflow-x-auto rounded-2xl border border-slate-200">
-                <table className="min-w-full divide-y divide-slate-200 text-left text-sm sm:text-base">
-                  <thead className="bg-slate-50">
+              <div className="mt-3 overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-700">
+                <table className="min-w-full divide-y divide-slate-200 text-left text-sm dark:divide-slate-800 sm:text-base">
+                  <thead className="bg-slate-50 dark:bg-slate-800/80">
                     <tr>
-                      <th scope="col" className="px-4 py-3 font-semibold text-slate-700">
+                      <th scope="col" className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">
                         Detail
                       </th>
-                      <th scope="col" className="px-4 py-3 font-semibold text-slate-700">
+                      <th scope="col" className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">
                         What the document says
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 bg-white">
+                  <tbody className="divide-y divide-slate-100 bg-white dark:divide-slate-800 dark:bg-slate-900">
                     {analysis.key_facts.map((fact, idx) => (
-                      <tr key={`${fact.label}-${idx}`} className="hover:bg-sky-50/40">
-                        <td className="px-4 py-3 font-semibold text-slate-900 sm:w-2/5">
+                      <tr key={`${fact.label}-${idx}`} className="hover:bg-sky-50/40 dark:hover:bg-slate-800/50">
+                        <td className="px-4 py-3 font-semibold text-slate-900 dark:text-white sm:w-2/5">
                           {fact.label}
                         </td>
-                        <td className="px-4 py-3 text-slate-700">{fact.value}</td>
+                        <td className="px-4 py-3 text-slate-700 dark:text-slate-300">
+                          {fact.value}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -590,23 +596,23 @@ export function ResultsDashboard({
       {showRisks ? (
         <section
           aria-labelledby="risks-heading"
-          className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm print-card sm:p-6"
+          className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 print-card sm:p-6"
         >
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <ShieldAlert className="h-5 w-5 text-amber-700" aria-hidden="true" />
-              <h3 id="risks-heading" className="text-lg font-bold text-slate-900">
+              <ShieldAlert className="h-5 w-5 text-amber-700 dark:text-amber-400" aria-hidden="true" />
+              <h3 id="risks-heading" className="text-lg font-bold text-slate-900 dark:text-white">
                 Risk Flags &amp; Things to Watch Out For
               </h3>
             </div>
-            <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-bold text-slate-700">
+            <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-bold text-slate-700 dark:bg-slate-800 dark:text-slate-300">
               {analysis.risk_flags.length}
             </span>
           </div>
 
           {analysis.risk_flags.length === 0 ? (
-            <div className="mt-3 flex items-center gap-2.5 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-900">
-              <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-700" aria-hidden="true" />
+            <div className="mt-3 flex items-center gap-2.5 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-900 dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-200">
+              <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-700 dark:text-emerald-400" aria-hidden="true" />
               <p className="text-sm font-medium sm:text-base">
                 No unusual, one-sided, or hidden risky clauses were spotted in this document.
               </p>
@@ -627,10 +633,10 @@ export function ResultsDashboard({
                         {style.label}
                       </span>
                     </div>
-                    <p className="mt-2 text-sm font-semibold text-slate-900 sm:text-base">
+                    <p className="mt-2 text-sm font-semibold text-slate-900 dark:text-white sm:text-base">
                       &ldquo;{flag.clause}&rdquo;
                     </p>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-800 sm:text-base">
+                    <p className="mt-1.5 text-sm leading-relaxed text-slate-800 dark:text-slate-300 sm:text-base">
                       <span className="font-semibold">Why it matters: </span>
                       {flag.why_it_matters}
                     </p>
@@ -646,24 +652,24 @@ export function ResultsDashboard({
       {showChecklist ? (
         <section
           aria-labelledby="checklist-heading"
-          className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm print-card sm:p-6"
+          className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 print-card sm:p-6"
         >
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <ClipboardList className="h-5 w-5 text-sky-700" aria-hidden="true" />
-              <h3 id="checklist-heading" className="text-lg font-bold text-slate-900">
+              <ClipboardList className="h-5 w-5 text-sky-700 dark:text-sky-400" aria-hidden="true" />
+              <h3 id="checklist-heading" className="text-lg font-bold text-slate-900 dark:text-white">
                 Action Checklist
               </h3>
             </div>
             {totalSteps > 0 ? (
-              <span className="text-xs font-semibold text-slate-600 sm:text-sm">
+              <span className="text-xs font-semibold text-slate-600 dark:text-slate-400 sm:text-sm">
                 {completedStepsCount} of {totalSteps} done ({checklistPct}%)
               </span>
             ) : null}
           </div>
 
           {totalSteps > 0 ? (
-            <div className="mt-2.5 h-2 w-full overflow-hidden rounded-full bg-slate-100 no-print">
+            <div className="mt-2.5 h-2 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800 no-print">
               <div
                 className="h-full rounded-full bg-teal-600 transition-all duration-300"
                 style={{ width: `${checklistPct}%` }}
@@ -672,7 +678,7 @@ export function ResultsDashboard({
           ) : null}
 
           {groupedChecklist.length === 0 ? (
-            <p className="mt-2 text-sm text-slate-600">
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
               No immediate action items found. Keep a copy of this document for your records.
             </p>
           ) : (
@@ -694,8 +700,8 @@ export function ResultsDashboard({
                             <label
                               className={`flex cursor-pointer items-start gap-3 rounded-2xl border p-3.5 transition ${
                                 isDone
-                                  ? "border-teal-200 bg-teal-50/40"
-                                  : "border-slate-200 bg-slate-50/70 hover:border-sky-300 hover:bg-sky-50/40"
+                                  ? "border-teal-200 bg-teal-50/40 dark:border-teal-800 dark:bg-teal-950/30"
+                                  : "border-slate-200 bg-slate-50/70 hover:border-sky-300 hover:bg-sky-50/40 dark:border-slate-700 dark:bg-slate-800/60 dark:hover:border-sky-600 dark:hover:bg-slate-800"
                               }`}
                             >
                               <input
@@ -707,20 +713,20 @@ export function ResultsDashboard({
                                     [idx]: !prev[idx],
                                   }))
                                 }
-                                className="mt-1 h-5 w-5 rounded border-slate-300 text-sky-700 focus:ring-sky-600"
+                                className="mt-1 h-5 w-5 rounded border-slate-300 text-sky-700 focus:ring-sky-600 dark:border-slate-600"
                               />
                               <div className="min-w-0 flex-1">
                                 <span
                                   className={`block text-sm leading-relaxed sm:text-base ${
                                     isDone
-                                      ? "line-through text-slate-400"
-                                      : "text-slate-900 font-medium"
+                                      ? "line-through text-slate-400 dark:text-slate-500"
+                                      : "font-medium text-slate-900 dark:text-slate-100"
                                   }`}
                                 >
                                   {item.step}
                                 </span>
                                 {item.deadline ? (
-                                  <span className="mt-1.5 inline-block rounded-md border border-rose-200 bg-white px-2.5 py-0.5 text-xs font-semibold text-rose-800">
+                                  <span className="mt-1.5 inline-block rounded-md border border-rose-200 bg-white px-2.5 py-0.5 text-xs font-semibold text-rose-800 dark:border-rose-800 dark:bg-rose-950/60 dark:text-rose-200">
                                     Deadline: {item.deadline}
                                   </span>
                                 ) : null}
@@ -742,16 +748,16 @@ export function ResultsDashboard({
       {showQuestions ? (
         <section
           aria-labelledby="questions-heading"
-          className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm print-card sm:p-6"
+          className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 print-card sm:p-6"
         >
           <div className="flex items-center gap-2">
-            <HelpCircle className="h-5 w-5 text-teal-700" aria-hidden="true" />
-            <h3 id="questions-heading" className="text-lg font-bold text-slate-900">
+            <HelpCircle className="h-5 w-5 text-teal-700 dark:text-teal-400" aria-hidden="true" />
+            <h3 id="questions-heading" className="text-lg font-bold text-slate-900 dark:text-white">
               Questions You Should Ask
             </h3>
           </div>
           {analysis.questions_to_ask.length === 0 ? (
-            <p className="mt-2 text-sm text-slate-600">
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
               No follow-up questions generated for this document.
             </p>
           ) : (
@@ -759,9 +765,9 @@ export function ResultsDashboard({
               {analysis.questions_to_ask.map((question, idx) => (
                 <li
                   key={idx}
-                  className="flex items-start gap-3 rounded-2xl border border-slate-100 bg-slate-50/70 p-3.5 text-sm leading-relaxed text-slate-800 sm:text-base"
+                  className="flex items-start gap-3 rounded-2xl border border-slate-100 bg-slate-50/70 p-3.5 text-sm leading-relaxed text-slate-800 dark:border-slate-800 dark:bg-slate-800/60 dark:text-slate-200 sm:text-base"
                 >
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-100 text-xs font-bold text-teal-900">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-100 text-xs font-bold text-teal-900 dark:bg-teal-950 dark:text-teal-200">
                     {idx + 1}
                   </span>
                   <span>{question}</span>
@@ -782,7 +788,7 @@ export function ResultsDashboard({
           onClick={() => setShowDocModal(false)}
         >
           <div
-            className="relative max-h-[90vh] max-w-3xl overflow-auto rounded-2xl bg-white p-2 shadow-2xl"
+            className="relative max-h-[90vh] max-w-3xl overflow-auto rounded-2xl bg-white p-2 shadow-2xl dark:bg-slate-900"
             onClick={(e) => e.stopPropagation()}
           >
             <button

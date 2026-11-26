@@ -76,7 +76,6 @@ export function CameraCaptureModal({
             audio: false,
           });
         } catch {
-          // Fallback to default camera if facingMode constraint isn't supported
           stream = await navigator.mediaDevices.getUserMedia({
             video: true,
             audio: false,
@@ -207,14 +206,14 @@ export function CameraCaptureModal({
       onClick={handleClose}
     >
       <div
-        className="w-full max-w-xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl"
+        className="w-full max-w-xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-100 px-5 py-3.5">
+        <div className="flex items-center justify-between border-b border-slate-100 px-5 py-3.5 dark:border-slate-800">
           <div className="flex items-center gap-2">
-            <Camera className="h-5 w-5 text-sky-700" aria-hidden="true" />
-            <h3 className="text-base font-bold text-slate-900">
+            <Camera className="h-5 w-5 text-sky-700 dark:text-sky-400" aria-hidden="true" />
+            <h3 className="text-base font-bold text-slate-900 dark:text-white">
               Take a Document Photo
             </h3>
           </div>
@@ -222,7 +221,7 @@ export function CameraCaptureModal({
             type="button"
             onClick={handleClose}
             aria-label="Close camera"
-            className="rounded-full p-1.5 text-slate-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-600"
+            className="rounded-full p-1.5 text-slate-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-600 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -249,7 +248,6 @@ export function CameraCaptureModal({
             />
           )}
 
-          {/* Alignment guide when live */}
           {status === "ready" && !capturedPreview ? (
             <div
               aria-hidden="true"
@@ -268,11 +266,11 @@ export function CameraCaptureModal({
           ) : null}
 
           {status === "error" ? (
-            <div className="flex min-h-[16rem] flex-col items-center justify-center bg-slate-50 px-6 py-8 text-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
+            <div className="flex min-h-[16rem] flex-col items-center justify-center bg-slate-50 px-6 py-8 text-center dark:bg-slate-900">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">
                 <Camera className="h-6 w-6" aria-hidden="true" />
               </div>
-              <p className="mt-3 max-w-md text-sm font-medium leading-relaxed text-slate-800">
+              <p className="mt-3 max-w-md text-sm font-medium leading-relaxed text-slate-800 dark:text-slate-200">
                 {errorMessage}
               </p>
               <button
@@ -292,13 +290,13 @@ export function CameraCaptureModal({
 
         {/* Footer Controls */}
         {status !== "error" ? (
-          <div className="flex flex-wrap items-center justify-between gap-2.5 border-t border-slate-100 bg-white px-5 py-4">
+          <div className="flex flex-wrap items-center justify-between gap-2.5 border-t border-slate-100 bg-white px-5 py-4 dark:border-slate-800 dark:bg-slate-900">
             {capturedPreview ? (
               <>
                 <button
                   type="button"
                   onClick={handleRetake}
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-600"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
                 >
                   <RotateCcw className="h-4 w-4" aria-hidden="true" />
                   Retake
@@ -321,7 +319,7 @@ export function CameraCaptureModal({
                     )
                   }
                   disabled={status !== "ready"}
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-600 disabled:opacity-50 sm:text-sm"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-600 disabled:opacity-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 sm:text-sm"
                 >
                   <RefreshCw className="h-4 w-4" aria-hidden="true" />
                   Switch Camera

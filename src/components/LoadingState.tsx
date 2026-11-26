@@ -33,7 +33,7 @@ export function LoadingState({ language, fileName, previewUrl }: LoadingStatePro
     <section
       role="status"
       aria-live="polite"
-      className="mx-auto max-w-2xl animate-fade-in-up rounded-3xl border border-sky-200 bg-white p-6 shadow-md sm:p-8"
+      className="mx-auto max-w-2xl animate-fade-in-up rounded-3xl border border-sky-200 bg-white p-6 shadow-md dark:border-slate-800 dark:bg-slate-900 sm:p-8"
     >
       <div className="flex flex-col items-center text-center">
         {previewUrl ? (
@@ -42,27 +42,28 @@ export function LoadingState({ language, fileName, previewUrl }: LoadingStatePro
             <img
               src={previewUrl}
               alt="Document being analyzed"
-              className="h-24 w-20 rounded-xl border border-sky-200 object-cover shadow-sm opacity-90"
+              className="h-24 w-20 rounded-xl border border-sky-200 object-cover opacity-90 shadow-sm dark:border-slate-700"
             />
             <div className="absolute -bottom-2 -right-2 flex h-8 w-8 items-center justify-center rounded-full bg-sky-700 text-white shadow">
               <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
             </div>
           </div>
         ) : (
-          <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-sky-50 text-sky-700 border border-sky-100">
+          <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-sky-100 bg-sky-50 text-sky-700 dark:border-slate-700 dark:bg-slate-800 dark:text-sky-400">
             <FileText className="h-8 w-8 animate-pulse" aria-hidden="true" />
           </div>
         )}
 
-        <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white sm:text-2xl">
           Analyzing your document...
         </h2>
         {fileName ? (
-          <p className="mt-1 max-w-xs truncate text-sm text-slate-500">{fileName}</p>
+          <p className="mt-1 max-w-xs truncate text-sm text-slate-500 dark:text-slate-400">
+            {fileName}
+          </p>
         ) : null}
 
-        {/* Smooth progress bar */}
-        <div className="mt-5 h-2.5 w-full overflow-hidden rounded-full bg-slate-100">
+        <div className="mt-5 h-2.5 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
           <div
             className="h-full rounded-full bg-gradient-to-r from-sky-600 to-teal-500 transition-all duration-700 ease-out"
             style={{ width: `${progressPercent}%` }}
@@ -70,7 +71,6 @@ export function LoadingState({ language, fileName, previewUrl }: LoadingStatePro
         </div>
       </div>
 
-      {/* Step-by-step live status */}
       <ul className="mt-6 space-y-3">
         {steps.map((label, idx) => {
           const isCompleted = idx < stepIndex;
@@ -80,10 +80,10 @@ export function LoadingState({ language, fileName, previewUrl }: LoadingStatePro
               key={label}
               className={`flex items-center gap-3 rounded-xl border px-3.5 py-2.5 text-sm transition-all ${
                 isCurrent
-                  ? "border-sky-300 bg-sky-50/80 font-semibold text-sky-950"
+                  ? "border-sky-300 bg-sky-50/80 font-semibold text-sky-950 dark:border-sky-700 dark:bg-sky-950/60 dark:text-sky-100"
                   : isCompleted
-                  ? "border-teal-200 bg-teal-50/50 text-teal-900"
-                  : "border-slate-100 bg-slate-50/50 text-slate-400"
+                  ? "border-teal-200 bg-teal-50/50 text-teal-900 dark:border-teal-800 dark:bg-teal-950/40 dark:text-teal-200"
+                  : "border-slate-100 bg-slate-50/50 text-slate-400 dark:border-slate-800 dark:bg-slate-800/40 dark:text-slate-500"
               }`}
             >
               <span
@@ -92,7 +92,7 @@ export function LoadingState({ language, fileName, previewUrl }: LoadingStatePro
                     ? "bg-teal-600 text-white"
                     : isCurrent
                     ? "bg-sky-700 text-white"
-                    : "bg-slate-200 text-slate-500"
+                    : "bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400"
                 }`}
               >
                 {isCompleted ? (
@@ -109,7 +109,7 @@ export function LoadingState({ language, fileName, previewUrl }: LoadingStatePro
         })}
       </ul>
 
-      <p className="mt-5 text-center text-xs text-slate-500">
+      <p className="mt-5 text-center text-xs text-slate-500 dark:text-slate-400">
         Usually takes 5–15 seconds. Your file is never stored on disk.
       </p>
     </section>

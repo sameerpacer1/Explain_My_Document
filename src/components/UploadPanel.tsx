@@ -116,7 +116,7 @@ export function UploadPanel({
   return (
     <div className="mx-auto max-w-4xl animate-fade-in-up space-y-6">
       {/* Compact Hero Intro Banner */}
-      <section className="rounded-3xl border border-sky-700/20 bg-gradient-to-br from-sky-900 via-sky-800 to-teal-800 p-5 text-white shadow-md sm:p-7">
+      <section className="rounded-3xl border border-sky-700/20 bg-gradient-to-br from-sky-900 via-sky-800 to-teal-800 p-5 text-white shadow-md dark:border-sky-500/20 dark:from-sky-950 dark:via-slate-900 dark:to-teal-950 sm:p-7">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl">
             <h2 className="text-xl font-bold tracking-tight sm:text-2xl lg:text-3xl">
@@ -145,19 +145,19 @@ export function UploadPanel({
       {/* Main Upload & Language Card */}
       <section
         aria-labelledby="upload-heading"
-        className="rounded-3xl border border-sky-200/80 bg-white/95 p-5 shadow-md backdrop-blur-sm sm:p-7"
+        className="rounded-3xl border border-sky-200/80 bg-white/95 p-5 shadow-md backdrop-blur-sm transition-colors dark:border-slate-800 dark:bg-slate-900/95 sm:p-7"
       >
         <div className="flex items-center justify-between gap-2">
           <div>
-            <h3 id="upload-heading" className="text-lg font-bold text-slate-900 sm:text-xl">
+            <h3 id="upload-heading" className="text-lg font-bold text-slate-900 dark:text-white sm:text-xl">
               Upload Document &amp; Pick Language
             </h3>
-            <p className="mt-0.5 text-sm text-slate-600">
+            <p className="mt-0.5 text-sm text-slate-600 dark:text-slate-400">
               JPG, PNG, WebP, or PDF up to {MAX_FILE_SIZE_LABEL}
             </p>
           </div>
           {selectedFile ? (
-            <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800">
+            <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-200">
               <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
               Ready
             </span>
@@ -204,24 +204,24 @@ export function UploadPanel({
             onDrop={handleDrop}
             className={`mt-4 flex flex-col items-center justify-center rounded-2xl border-2 border-dashed px-4 py-8 text-center transition-all sm:py-10 ${
               isDragging
-                ? "scale-[1.01] border-sky-500 bg-sky-50 shadow-inner"
-                : "border-sky-200 bg-sky-50/40 hover:border-sky-400 hover:bg-sky-50/70"
+                ? "scale-[1.01] border-sky-500 bg-sky-50 shadow-inner dark:bg-sky-950/40"
+                : "border-sky-200 bg-sky-50/40 hover:border-sky-400 hover:bg-sky-50/70 dark:border-slate-700 dark:bg-slate-800/50 dark:hover:border-sky-500 dark:hover:bg-slate-800"
             }`}
           >
             <div
               className={`flex h-14 w-14 items-center justify-center rounded-2xl transition-colors ${
                 isDragging
                   ? "bg-sky-600 text-white"
-                  : "bg-sky-100 text-sky-700"
+                  : "bg-sky-100 text-sky-700 dark:bg-sky-950 dark:text-sky-300"
               }`}
             >
               <UploadCloud className="h-7 w-7" aria-hidden="true" />
             </div>
 
-            <p className="mt-3.5 text-base font-semibold text-slate-900">
+            <p className="mt-3.5 text-base font-semibold text-slate-900 dark:text-white">
               Drag and drop your file here
             </p>
-            <p className="mt-1 text-xs text-slate-500 sm:text-sm">
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400 sm:text-sm">
               or use the buttons below to browse or take a photo
             </p>
 
@@ -230,7 +230,7 @@ export function UploadPanel({
                 type="button"
                 disabled={disabled}
                 onClick={() => fileInputRef.current?.click()}
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-sky-700 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-800 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 disabled:opacity-50"
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-sky-700 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-800 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 disabled:opacity-50 dark:focus:ring-offset-slate-900"
               >
                 <UploadCloud className="h-4 w-4" aria-hidden="true" />
                 Choose File / PDF
@@ -240,7 +240,7 @@ export function UploadPanel({
                 type="button"
                 disabled={disabled}
                 onClick={() => setShowCameraModal(true)}
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-sky-300 bg-white px-4 py-3 text-sm font-semibold text-sky-900 shadow-sm transition hover:bg-sky-50 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 disabled:opacity-50"
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-sky-300 bg-white px-4 py-3 text-sm font-semibold text-sky-900 shadow-sm transition hover:bg-sky-50 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 disabled:opacity-50 dark:border-slate-700 dark:bg-slate-800 dark:text-sky-200 dark:hover:bg-slate-700 dark:focus:ring-offset-slate-900"
               >
                 <Camera className="h-4 w-4" aria-hidden="true" />
                 Take Photo
@@ -248,14 +248,14 @@ export function UploadPanel({
             </div>
           </div>
         ) : (
-          <div className="mt-4 rounded-2xl border border-sky-200 bg-sky-50/70 p-4 transition-all">
+          <div className="mt-4 rounded-2xl border border-sky-200 bg-sky-50/70 p-4 transition-all dark:border-slate-700 dark:bg-slate-800/60">
             <div className="flex items-start justify-between gap-3">
               <div className="flex min-w-0 items-start gap-3.5">
                 {previewUrl && selectedFile.type.startsWith("image/") ? (
                   <button
                     type="button"
                     onClick={() => setShowZoomModal(true)}
-                    className="group relative h-24 w-20 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-600"
+                    className="group relative h-24 w-20 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-600 dark:border-slate-700"
                     aria-label="Zoom in to preview uploaded document"
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -270,17 +270,17 @@ export function UploadPanel({
                     </span>
                   </button>
                 ) : (
-                  <div className="flex h-24 w-20 shrink-0 flex-col items-center justify-center rounded-xl border border-rose-200 bg-rose-50 text-rose-700">
+                  <div className="flex h-24 w-20 shrink-0 flex-col items-center justify-center rounded-xl border border-rose-200 bg-rose-50 text-rose-700 dark:border-rose-800 dark:bg-rose-950/60 dark:text-rose-300">
                     <FileText className="h-8 w-8" aria-hidden="true" />
                     <span className="mt-1 text-xs font-bold uppercase">PDF</span>
                   </div>
                 )}
 
                 <div className="min-w-0">
-                  <p className="truncate text-base font-semibold text-slate-900">
+                  <p className="truncate text-base font-semibold text-slate-900 dark:text-white">
                     {selectedFile.name}
                   </p>
-                  <p className="mt-0.5 text-sm text-slate-600">
+                  <p className="mt-0.5 text-sm text-slate-600 dark:text-slate-400">
                     {formatBytes(selectedFile.size)} &bull;{" "}
                     {selectedFile.type === "application/pdf" ? "PDF Document" : "Image"}
                   </p>
@@ -289,7 +289,7 @@ export function UploadPanel({
                       type="button"
                       disabled={disabled}
                       onClick={() => fileInputRef.current?.click()}
-                      className="text-xs font-semibold text-sky-700 underline hover:text-sky-900 focus:outline-none focus:ring-2 focus:ring-sky-600 rounded"
+                      className="rounded text-xs font-semibold text-sky-700 underline hover:text-sky-900 focus:outline-none focus:ring-2 focus:ring-sky-600 dark:text-sky-400 dark:hover:text-sky-300"
                     >
                       Replace file
                     </button>
@@ -297,7 +297,7 @@ export function UploadPanel({
                       <button
                         type="button"
                         onClick={() => setShowZoomModal(true)}
-                        className="inline-flex items-center gap-1 text-xs font-semibold text-teal-700 hover:text-teal-900 focus:outline-none focus:ring-2 focus:ring-teal-600 rounded"
+                        className="inline-flex items-center gap-1 rounded text-xs font-semibold text-teal-700 hover:text-teal-900 focus:outline-none focus:ring-2 focus:ring-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
                       >
                         <Eye className="h-3.5 w-3.5" aria-hidden="true" />
                         Inspect full image
@@ -312,7 +312,7 @@ export function UploadPanel({
                 disabled={disabled}
                 onClick={() => onFileSelect(null)}
                 aria-label="Remove selected file"
-                className="rounded-lg p-1.5 text-slate-500 hover:bg-white hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-600"
+                className="rounded-lg p-1.5 text-slate-500 hover:bg-white hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-600 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
               >
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -321,16 +321,16 @@ export function UploadPanel({
         )}
 
         {/* Language Selection: Quick Tap Chips + Full Dropdown */}
-        <div className="mt-6 border-t border-slate-100 pt-5">
+        <div className="mt-6 border-t border-slate-100 pt-5 dark:border-slate-800">
           <div className="flex items-center justify-between gap-2">
             <label
               htmlFor="output-language"
-              className="flex items-center gap-2 text-sm font-bold text-slate-900"
+              className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white"
             >
-              <Languages className="h-4 w-4 text-sky-700" aria-hidden="true" />
+              <Languages className="h-4 w-4 text-sky-700 dark:text-sky-400" aria-hidden="true" />
               Select Output Language
             </label>
-            <span className="text-xs text-slate-500">10 languages supported</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400">10 languages supported</span>
           </div>
 
           <div
@@ -351,7 +351,7 @@ export function UploadPanel({
                   className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-600 sm:text-sm ${
                     active
                       ? "border-sky-700 bg-sky-700 text-white shadow-sm"
-                      : "border-slate-200 bg-slate-50 text-slate-700 hover:border-sky-300 hover:bg-sky-50"
+                      : "border-slate-200 bg-slate-50 text-slate-700 hover:border-sky-300 hover:bg-sky-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-sky-500 dark:hover:bg-slate-700"
                   }`}
                 >
                   {option.nativeLabel !== option.label
@@ -368,7 +368,7 @@ export function UploadPanel({
               value={language}
               disabled={disabled}
               onChange={(e) => onLanguageChange(e.target.value as SupportedLanguage)}
-              className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-medium text-slate-900 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-600/30 disabled:opacity-60 sm:text-base"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-medium text-slate-900 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-600/30 disabled:opacity-60 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 sm:text-base"
             >
               {SUPPORTED_LANGUAGES.map((lang) => (
                 <option key={lang.value} value={lang.value}>
@@ -382,7 +382,7 @@ export function UploadPanel({
               type="button"
               disabled={!selectedFile || disabled}
               onClick={onAnalyze}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sky-700 to-teal-700 px-6 py-3 text-base font-bold text-white shadow-sm transition hover:from-sky-800 hover:to-teal-800 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sky-700 to-teal-700 px-6 py-3 text-base font-bold text-white shadow-sm transition hover:from-sky-800 hover:to-teal-800 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-offset-slate-900 sm:w-auto"
             >
               <Sparkles className="h-5 w-5" aria-hidden="true" />
               Explain Document
@@ -390,9 +390,11 @@ export function UploadPanel({
             </button>
           </div>
 
-          {/* Subtle Try a sample row (clean buttons without exposing sample details) */}
-          <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-slate-100 pt-3.5">
-            <span className="text-xs font-semibold text-slate-500">Try a sample:</span>
+          {/* Subtle Try a sample row */}
+          <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-slate-100 pt-3.5 dark:border-slate-800">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+              Try a sample:
+            </span>
             {SAMPLE_DOCUMENTS.map((sample) => {
               const isLoadingThis = loadingSampleId === sample.id;
               return (
@@ -401,9 +403,9 @@ export function UploadPanel({
                   type="button"
                   disabled={disabled}
                   onClick={() => onTrySample(sample)}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-sky-200 bg-sky-50/70 px-3 py-1.5 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-600 disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-sky-200 bg-sky-50/70 px-3 py-1.5 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-600 disabled:opacity-50 dark:border-slate-700 dark:bg-slate-800 dark:text-sky-300 dark:hover:border-sky-500 dark:hover:bg-slate-700"
                 >
-                  <FileText className="h-3.5 w-3.5 text-sky-700" aria-hidden="true" />
+                  <FileText className="h-3.5 w-3.5 text-sky-700 dark:text-sky-400" aria-hidden="true" />
                   {isLoadingThis ? `Loading ${sample.title}...` : sample.title}
                 </button>
               );
@@ -412,7 +414,7 @@ export function UploadPanel({
         </div>
       </section>
 
-      {/* Live Camera Capture Modal (works on desktop webcam & mobile camera) */}
+      {/* Live Camera Capture Modal */}
       <CameraCaptureModal
         isOpen={showCameraModal}
         onClose={() => setShowCameraModal(false)}
@@ -430,7 +432,7 @@ export function UploadPanel({
           onClick={() => setShowZoomModal(false)}
         >
           <div
-            className="relative max-h-[90vh] max-w-3xl overflow-auto rounded-2xl bg-white p-2 shadow-2xl"
+            className="relative max-h-[90vh] max-w-3xl overflow-auto rounded-2xl bg-white p-2 shadow-2xl dark:bg-slate-900"
             onClick={(e) => e.stopPropagation()}
           >
             <button

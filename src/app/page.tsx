@@ -148,9 +148,9 @@ export default function HomePage() {
         {errorMessage ? (
           <div
             role="alert"
-            className="mb-6 flex items-start gap-3 rounded-2xl border border-rose-300 bg-rose-50 p-4 text-rose-950 shadow-sm no-print"
+            className="mb-6 flex items-start gap-3 rounded-2xl border border-rose-300 bg-rose-50 p-4 text-rose-950 shadow-sm dark:border-rose-800 dark:bg-rose-950/70 dark:text-rose-200 no-print"
           >
-            <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-rose-700" aria-hidden="true" />
+            <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-rose-700 dark:text-rose-400" aria-hidden="true" />
             <div className="text-sm font-medium leading-relaxed sm:text-base">
               {errorMessage}
             </div>

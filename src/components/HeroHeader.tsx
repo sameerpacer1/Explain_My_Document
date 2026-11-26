@@ -1,4 +1,5 @@
 import { FileText, RotateCcw, ShieldCheck, Sparkles } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface HeroHeaderProps {
   currentStep: 1 | 2 | 3;
@@ -14,7 +15,7 @@ export function HeroHeader({ currentStep, hasResults, onReset }: HeroHeaderProps
   ];
 
   return (
-    <header className="sticky top-0 z-30 border-b border-sky-100/90 bg-white/90 backdrop-blur-md no-print">
+    <header className="sticky top-0 z-30 border-b border-sky-100/90 bg-white/90 backdrop-blur-md transition-colors dark:border-slate-800 dark:bg-slate-900/90 no-print">
       <div className="mx-auto max-w-6xl px-4 py-3.5 sm:px-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           {/* Brand */}
@@ -27,27 +28,29 @@ export function HeroHeader({ currentStep, hasResults, onReset }: HeroHeaderProps
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-lg font-bold tracking-tight text-slate-900 sm:text-xl">
+                <h1 className="text-lg font-bold tracking-tight text-slate-900 dark:text-white sm:text-xl">
                   Explain-My-Document
                 </h1>
-                <span className="hidden items-center gap-1 rounded-full bg-sky-50 px-2 py-0.5 text-[11px] font-semibold text-sky-800 border border-sky-200 sm:inline-flex">
-                  <Sparkles className="h-3 w-3 text-sky-600" aria-hidden="true" />
+                <span className="hidden items-center gap-1 rounded-full border border-sky-200 bg-sky-50 px-2 py-0.5 text-[11px] font-semibold text-sky-800 dark:border-sky-800 dark:bg-sky-950/70 dark:text-sky-200 sm:inline-flex">
+                  <Sparkles className="h-3 w-3 text-sky-600 dark:text-sky-400" aria-hidden="true" />
                   10 Indian Languages
                 </span>
               </div>
-              <p className="text-xs text-slate-600 sm:text-sm">
+              <p className="text-xs text-slate-600 dark:text-slate-400 sm:text-sm">
                 Plain-language summaries, risk flags &amp; Q&amp;A for official documents
               </p>
             </div>
           </div>
 
-          {/* Right side: Privacy Pill + Stepper or Reset */}
-          <div className="flex items-center gap-2.5">
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-teal-200 bg-teal-50/90 px-3 py-1 text-xs font-medium text-teal-900">
-              <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-teal-700" aria-hidden="true" />
-              <span className="hidden sm:inline">Your document is processed in memory and never stored</span>
-              <span className="sm:hidden">In-memory &bull; Never stored</span>
+          {/* Right side: Privacy Pill + Theme Toggle + Reset */}
+          <div className="flex items-center gap-2">
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-teal-200 bg-teal-50/90 px-3 py-1 text-xs font-medium text-teal-900 dark:border-teal-800 dark:bg-teal-950/70 dark:text-teal-200">
+              <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-teal-700 dark:text-teal-400" aria-hidden="true" />
+              <span className="hidden md:inline">Your document is processed in memory and never stored</span>
+              <span className="md:hidden">Never stored</span>
             </div>
+
+            <ThemeToggle />
 
             {hasResults && onReset ? (
               <button
@@ -64,7 +67,7 @@ export function HeroHeader({ currentStep, hasResults, onReset }: HeroHeaderProps
         </div>
 
         {/* Interactive Progress Stepper */}
-        <nav aria-label="Progress" className="mt-3 flex items-center gap-1.5 border-t border-slate-100 pt-2.5 sm:gap-3">
+        <nav aria-label="Progress" className="mt-3 flex items-center gap-1.5 border-t border-slate-100 pt-2.5 dark:border-slate-800 sm:gap-3">
           {steps.map((step, idx) => {
             const isActive = currentStep === step.num;
             const isDone = currentStep > step.num;
@@ -75,8 +78,8 @@ export function HeroHeader({ currentStep, hasResults, onReset }: HeroHeaderProps
                     isActive
                       ? "bg-sky-700 text-white shadow-sm"
                       : isDone
-                      ? "bg-teal-100 text-teal-900"
-                      : "bg-slate-100 text-slate-500"
+                      ? "bg-teal-100 text-teal-900 dark:bg-teal-950 dark:text-teal-200"
+                      : "bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
                   }`}
                 >
                   <span
@@ -85,7 +88,7 @@ export function HeroHeader({ currentStep, hasResults, onReset }: HeroHeaderProps
                         ? "bg-white/20 text-white"
                         : isDone
                         ? "bg-teal-600 text-white"
-                        : "bg-slate-200 text-slate-600"
+                        : "bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-300"
                     }`}
                   >
                     {step.num}
@@ -95,7 +98,7 @@ export function HeroHeader({ currentStep, hasResults, onReset }: HeroHeaderProps
                 {idx < steps.length - 1 ? (
                   <div
                     className={`h-0.5 w-4 rounded sm:w-8 ${
-                      isDone ? "bg-teal-400" : "bg-slate-200"
+                      isDone ? "bg-teal-400 dark:bg-teal-600" : "bg-slate-200 dark:bg-slate-700"
                     }`}
                     aria-hidden="true"
                   />
