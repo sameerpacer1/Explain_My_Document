@@ -181,23 +181,7 @@ flowchart LR
 
 ---
 
-## 10. Deployment Instructions (Vercel)
-
-1. Push this repository to GitHub (`.gitignore` excludes `.env*` so `.env.local` is never committed).
-2. Log in to [Vercel](https://vercel.com) and click **Add New Project**.
-3. Import `sameerpacer1/Explain_My_Document` (Vercel automatically detects Next.js).
-4. Under **Environment Variables**, add:
-   - `GEMINI_API_KEY` = your Gemini API key
-   - `GEMINI_MODEL` = `gemini-3.5-flash`
-   - `GEMINI_FALLBACK_MODEL` = `gemini-3.5-flash-lite`
-5. Click **Deploy**.
-6. Once live, verify by clicking **Rent Agreement** under `Try a sample:` on the deployed URL.
-
-> **Note on Vercel Serverless Rate Limiting**: The built-in in-memory rate limiter works per warm serverless instance. For high-traffic production scale, swap `src/lib/rateLimit.ts` to use Upstash Redis (`@upstash/ratelimit`).
-
----
-
-## 11. Limitations & Future Work
+## 10. Limitations & Future Work
 
 ### Current Limitations
 - **In-memory per-instance rate limiting**: Resets on cold starts in serverless environments.
@@ -210,22 +194,3 @@ flowchart LR
 - **WhatsApp Bot Integration**: Forward a photo of any notice on WhatsApp and get a voice note + plain-language reply back.
 - **Offline / Low-Bandwidth Mode**: Client-side image compression before upload and cached PWA support for rural connectivity.
 - **Multi-page Photo Stitching**: Combine multiple camera shots of a long contract into one unified analysis.
-
----
-
-## 12. 90-Second Hackathon Demo Script
-
-> **0:00 – 0:15 | The Problem**
-> *"Imagine receiving an 11-month Mumbai rental agreement or an urgent Mahavitaran disconnection notice—written in dense legal English. Millions of Indians either sign blindly or miss critical deadlines because the document isn't in a language they're comfortable reading. That's why we built Explain-My-Document."*
-
-> **0:15 – 0:40 | Live Demo with a Sample Document**
-> *"Everything runs in memory—nothing is ever stored. Let's click **Rent Agreement** under Try a sample. Within seconds, Gemini reads the stamp, clauses, and even the handwritten note at the bottom. At the top, we immediately see a **High Attention** gauge, a plain-language summary, and a clean Key Facts table showing the ₹32,000 rent and ₹1,50,000 deposit—with Aadhaar, PAN, and phone numbers automatically masked."*
-
-> **0:40 – 0:55 | Risk Flags & Grounded Q&A**
-> *"Look at the Risk Flags: it caught the one-sided 6-month lock-in, the ₹1,000/day late fee, the automatic 10% renewal, and the ₹64,000 automatic painting deduction. Below, the user gets an interactive Action Checklist with a progress bar, questions to ask the landlord, and a sticky grounded chat where they can ask 'What if I leave after 4 months?'—answered strictly from this contract."*
-
-> **0:55 – 1:15 | Instant Language Switch & Accessibility**
-> *"Now watch what happens if the tenant's parents prefer **Hindi** (or Tamil, Bengali, Marathi). We switch the language dropdown right here—every summary, risk flag, checklist item, and even the Listen audio playback switches into simple, everyday Hindi."*
-
-> **1:15 – 1:30 | Impact**
-> *"Explain-My-Document gives ordinary citizens clarity before they sign, pay, or panic—turning intimidating paperwork into plain-language confidence in 10 Indian languages."*
